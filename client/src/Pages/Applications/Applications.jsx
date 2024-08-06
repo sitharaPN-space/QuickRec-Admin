@@ -1,31 +1,30 @@
-import { useState, useEffect } from "react";
-import { useNavigate, useOutletContext } from "react-router-dom";
-import { useTheme } from "@mui/material/styles";
+import FilterAltIcon from "@mui/icons-material/FilterAlt";
 import {
   Box,
-  Container,
-  Table,
-  TableBody,
-  TableCell,
-  TableRow,
-  Paper,
-  IconButton,
-  TableHead,
-  Grid,
-  Typography,
-  useMediaQuery,
-  CircularProgress,
   Chip,
+  CircularProgress,
+  Container,
   Dialog,
   DialogTitle,
+  Grid,
+  IconButton,
   List,
   ListItem,
   ListItemButton,
   ListItemText,
+  Paper,
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableRow,
+  Typography,
+  useMediaQuery,
 } from "@mui/material";
-import { useLocation } from "react-router-dom";
+import { useTheme } from "@mui/material/styles";
 import dayjs from "dayjs";
-import FilterAltIcon from "@mui/icons-material/FilterAlt";
+import { useEffect, useState } from "react";
+import { useLocation, useNavigate, useOutletContext } from "react-router-dom";
 import { Input, TablePagination } from "../../components";
 import {
   useGetApplicationsByVacancyQuery,
@@ -33,6 +32,7 @@ import {
 } from "../../state/api";
 
 const columns = [
+  { id: "applicationRef", label: "Application Ref.", align: "center" },
   { id: "fullName", label: "Full Name", align: "center" },
   { id: "vacancy", label: "Vacancy", align: "center" },
   { id: "phoneNo", label: "Phone No", align: "center" },
@@ -332,6 +332,9 @@ const Applications = () => {
                             handleApplicationView(row.UserId, row.ApplicationId)
                           }
                         >
+                          <TableCell align="left">
+                            {row.ApplicationRefNo}
+                          </TableCell>
                           <TableCell align="left">
                             {row.NameWithInitials}
                           </TableCell>
